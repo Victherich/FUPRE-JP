@@ -28,7 +28,7 @@ const Container = styled(motion.div)`
   margin: auto;
   padding: 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 30px;
   background: #f5f5f5;
   border-radius: 20px;
@@ -72,13 +72,13 @@ const Details = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 2.5em;
+  font-size: 2em;
   color: rgba(0,0,255,0.5);
   margin-bottom: 10px;
 `;
 
 const Subtitle = styled.p`
-  font-size: 1.2em;
+  font-size: 1em;
   color: #555;
   margin: 5px 0;
   display: flex;
@@ -91,7 +91,7 @@ const Subtitle = styled.p`
 `;
 
 const Description = styled.p`
-  font-size: 1.1em;
+  font-size: 1rem;
   color: #444;
   line-height: 1.6;
   margin-top: 20px;

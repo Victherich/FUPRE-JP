@@ -458,7 +458,7 @@ const PublishedArticles = () => {
              <CardTitle>{publication.title.toUpperCase()}</CardTitle>
              </TitleWrap>
               <CardText><strong>By:</strong> {getAuthorName(publication.author_id)} | In the Year {new Date(publication.created_at).getFullYear()}</CardText>
-              <p><strong>Volume {pub.volume}, Issue {pub.issue}</strong></p>
+              <p><strong style={{fontSize:"0.9rem"}}>Volume {publication.volume}, Issue {publication.issue}</strong></p>
           <CardActions>
                 <CardButton onClick={()=>navigate(`/publicationdetail/${publication.id}`)} >
                   <FaNewspaper size={20}  />
