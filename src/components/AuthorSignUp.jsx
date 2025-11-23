@@ -135,6 +135,8 @@ const AuthorSignUp = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [countryCodes, setCountryCodes] = useState([]);
 
+  console.log(countryCodes)
+
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all?fields=idd,name")
       .then((response) => response.json())

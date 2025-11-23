@@ -65,6 +65,8 @@ const AuthorProfile = () => {
   const [message, setMessage] = useState(null);
   const [countryCodes, setCountryCodes] = useState([]);
 
+  // console.log(countryCodes)
+
   // Get author ID from Redux state
   const authorInfo = useSelector((state) => state.authorInfo);
 
@@ -72,7 +74,7 @@ const AuthorProfile = () => {
     if (authorInfo?.id) {
       fetchAuthorData(authorInfo.id);
     }
-    fetchCountryCodes();
+    // fetchCountryCodes();
   }, [authorInfo?.id]);
 
   const fetchAuthorData = async (id) => {
@@ -93,19 +95,41 @@ const AuthorProfile = () => {
     }
   };
 
-  const fetchCountryCodes = async () => {
-    try {
-      const response = await axios.get("https://restcountries.com/v3.1/all");
-      const codes = response.data.map(country => ({
-        name: country.name.common,
-        code: country.idd?.root ? `${country.idd.root}${country.idd.suffixes ? country.idd.suffixes[0] : ""}` : ""
-      })).filter(country => country.code !== "").sort((a, b) => a.name.localeCompare(b.name));// Remove empty codes
 
-      setCountryCodes(codes);
-    } catch (err) {
-      console.error("Failed to fetch country codes:", err);
-    }
-  };
+  // const fetchCountryCodes = async () => {
+  //   try {
+  //     const response = await axios.get("https://restcountries.com/v3.1/all");
+  //     const codes = response.data.map(country => ({
+  //       name: country.name.common,
+  //       code: country.idd?.root ? `${country.idd.root}${country.idd.suffixes ? country.idd.suffixes[0] : ""}` : ""
+  //     })).filter(country => country.code !== "").sort((a, b) => a.name.localeCompare(b.name));// Remove empty codes
+
+  //     setCountryCodes(codes);
+  //   } catch (err) {
+  //     console.error("Failed to fetch country codes:", err);
+  //   }
+  // };
+
+  useEffect(() => {
+    fetch("https://restcountries.com/v3.1/all?fields=idd,name")
+      .then((response) => response.json())
+      .then((data) => {
+        const formattedData = data
+          .map((country) => ({
+            code: country.idd?.root
+              ? country.idd.root + (country.idd.suffixes ? country.idd.suffixes[0] : "")
+              : "",
+            name: country.name.common,
+          }))
+          .filter((country) => country.code)
+          .sort((a, b) => a.name.localeCompare(b.name));
+
+        setCountryCodes(formattedData);
+      })
+      .catch((error) => console.error("Error fetching country codes:", error));
+  }, []);
+
+
 
   const handleChange = (e) => {
     setUpdatedData({ ...updatedData, [e.target.name]: e.target.value });

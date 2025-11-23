@@ -94,7 +94,7 @@ function App() {
       </Route>
 
       <Route path='/editorsignup' element={<PrivateEditorSignup/>}>
-        <Route path='' element={<EditorSignUp/>}/>
+        {/* <Route path='' element={<EditorSignUp/>}/> */}
       </Route>
 
       <Route path='/editorlogin' element={<PrivateEditorLogin/>}>

@@ -7,7 +7,7 @@ const PrivateReviewerLogin = () => {
    const reviewerToken = useSelector(state=>state.reviewerToken)
     
   return (
-   reviewerToken?<Navigate to="/"/>:<Outlet/>
+   reviewerToken?<Navigate to=""/>:<Outlet/>
   )
 }
 

@@ -7,7 +7,7 @@ const PrivateAuthorLogin = () => {
    const authorToken = useSelector(state=>state.authorToken)
     
   return (
-   authorToken?<Navigate to="/"/>:<Outlet/>
+   authorToken?<Navigate to=""/>:<Outlet/>
   )
 }
 

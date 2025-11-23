@@ -7,7 +7,7 @@ const PrivateEditorLogin = () => {
    const editorToken = useSelector(state=>state.editorToken)
     
   return (
-   editorToken?<Navigate to="/"/>:<Outlet/>
+   editorToken?<Navigate to=""/>:<Outlet/>
   )
 }
 

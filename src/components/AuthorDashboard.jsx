@@ -30,7 +30,7 @@ const Sidebar = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  // z-index: 10;
+  z-index: 10;
   position:fixed;
   right:0px;
 `;
@@ -130,15 +130,15 @@ const AuthorDashboard = () => {
           {menuOpen ? <FaTimes /> : <FaBars />}
         </MenuButton>
 
-        <MenuItem open={menuOpen} onClick={() => setActivePage("profile")} style={{background:activePage==='profile'?'#005A93':''}}>
+        <MenuItem open={menuOpen} onClick={() => {setActivePage("profile");window.scroll(0,0)}} style={{background:activePage==='profile'?'#005A93':''}}>
           <FaUser /> <span>Author Profile</span>
         </MenuItem>
 
-        <MenuItem open={menuOpen} onClick={() => setActivePage("submission")} style={{background:activePage==='submission'?'#005A93':''}}>
+        <MenuItem open={menuOpen} onClick={() => {setActivePage("submission");window.scroll(0,0)}} style={{background:activePage==='submission'?'#005A93':''}}>
           <FaFileUpload /> <span>Submit Manuscript</span>
         </MenuItem>
 
-        <MenuItem open={menuOpen} onClick={() => setActivePage("mymanuscripts")} style={{background:activePage==='mymanuscripts'?'#005A93':''}}>
+        <MenuItem open={menuOpen} onClick={() => {setActivePage("mymanuscripts");window.scroll(0,0)}} style={{background:activePage==='mymanuscripts'?'#005A93':''}}>
           <FaFileAlt/> <span>My Submission</span>
         </MenuItem>
 

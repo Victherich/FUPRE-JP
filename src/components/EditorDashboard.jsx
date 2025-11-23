@@ -48,7 +48,7 @@ const Sidebar = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  // z-index: 10;
+  z-index: 10;
   position:fixed;
   right:0px;
 `;
@@ -148,31 +148,31 @@ const EditorDashboard = () => {
           {menuOpen ? <FaTimes /> : <FaBars />}
         </MenuButton>
 
-        <MenuItem open={menuOpen} onClick={() => setActivePage("profile")} style={{background:activePage==='profile'?'#005A93':''}}>
+        <MenuItem open={menuOpen} onClick={() => {setActivePage("profile");window.scroll(0,0)}} style={{background:activePage==='profile'?'#005A93':''}}>
           <FaUser /> <span>Editor Profile</span>
         </MenuItem>
 
-        <MenuItem open={menuOpen} onClick={() => setActivePage("submission")} style={{background:activePage==='submission'?'#005A93':''}}>
+        <MenuItem open={menuOpen} onClick={() => {setActivePage("submission"); window.scroll(0,0)}} style={{background:activePage==='submission'?'#005A93':''}}>
           <FaFileAlt /> <span>Submitted Manuscripts</span>
         </MenuItem>
 
-        <MenuItem open={menuOpen} onClick={() => setActivePage("searchmanuscripts")} style={{background:activePage==='searchmanuscripts'?'#005A93':''}}>
+        <MenuItem open={menuOpen} onClick={() => {setActivePage("searchmanuscripts"); window.scroll(0,0)}} style={{background:activePage==='searchmanuscripts'?'#005A93':''}}>
                   <FaSearch /> <span>Search Manuscripts</span>
                 </MenuItem>
 
-                <MenuItem open={menuOpen} onClick={() => setActivePage("publisharticle")} style={{background:activePage==='publisharticle'?'#005A93':''}}>
+                <MenuItem open={menuOpen} onClick={() => {setActivePage("publisharticle"); window.scroll(0,0)}} style={{background:activePage==='publisharticle'?'#005A93':''}}>
                   <FaUpload /> <span>Publish Article</span>
                 </MenuItem>
 
-                <MenuItem open={menuOpen} onClick={() => setActivePage("publishedarticles")} style={{background:activePage==='publishedarticles'?'#005A93':''}}>
+                <MenuItem open={menuOpen} onClick={() => {setActivePage("publishedarticles");window.scroll(0,0)}} style={{background:activePage==='publishedarticles'?'#005A93':''}}>
                   <FaBookOpen /> <span>Published Articles</span>
                 </MenuItem>
 
-        <MenuItem open={menuOpen} onClick={() => setActivePage("allreviewers")} style={{background:activePage==='allreviewers'?'#005A93':''}}>
+        <MenuItem open={menuOpen} onClick={() => {setActivePage("allreviewers");window.scroll(0,0)}} style={{background:activePage==='allreviewers'?'#005A93':''}}>
           <FaUsers /> <span>All Reviewers</span>
         </MenuItem>
 
-        <MenuItem open={menuOpen} onClick={() => setActivePage("register")} style={{background:activePage==='register'?'#005A93':''}}>
+        <MenuItem open={menuOpen} onClick={() => {setActivePage("register");window.scroll(0,0)}} style={{background:activePage==='register'?'#005A93':''}}>
           <FaRegAddressBook /> <span>Register an Editor</span>
         </MenuItem>
 

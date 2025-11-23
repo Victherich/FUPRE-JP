@@ -758,7 +758,7 @@ const ArchivesPage = () => {
                           <span>•</span>
                           <span>{new Date(publication.created_at).getFullYear()}</span>
                           <span>•</span>
-                          <span>Vol {publication.volume}, Issue {publication.issue}</span>
+                          {/* <span>Vol {publication.volume}, Issue {publication.issue}</span> */}
                         </SmallMeta>
                       </div>
                     </CardHeader>

@@ -43,7 +43,7 @@ const Sidebar = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
-  // z-index: 10;
+  z-index: 10;
   position:fixed;
   right:0px;
 `;
@@ -142,15 +142,15 @@ const ReviewerDashboard = () => {
           {menuOpen ? <FaTimes /> : <FaBars />}
         </MenuButton>
 
-        <MenuItem open={menuOpen} onClick={() => setActivePage("profile")} style={{background:activePage==='profile'?'#005A93':''}}>
+        <MenuItem open={menuOpen} onClick={() => {setActivePage("profile");window.scroll(0,0)}} style={{background:activePage==='profile'?'#005A93':''}}>
           <FaUser /> <span>Reveiwer Profile</span>
         </MenuItem>
 
-        <MenuItem open={menuOpen} onClick={() => setActivePage("assignedmanuscript")} style={{background:activePage==='assignedmanuscript'?'#005A93':''}}>
+        <MenuItem open={menuOpen} onClick={() => {setActivePage("assignedmanuscript");window.scroll(0,0)}} style={{background:activePage==='assignedmanuscript'?'#005A93':''}}>
           <FaFileAlt /> <span>Assigned Manuscripts</span>
         </MenuItem>
 
-        <MenuItem open={menuOpen} onClick={() => setActivePage("searchmanuscripts")} style={{background:activePage==='searchmanuscripts'?'#005A93':''}}>
+        <MenuItem open={menuOpen} onClick={() => {setActivePage("searchmanuscripts");window.scroll(0,0)}} style={{background:activePage==='searchmanuscripts'?'#005A93':''}}>
           <FaSearch /> <span>Search Manuscripts</span>
         </MenuItem>
 
