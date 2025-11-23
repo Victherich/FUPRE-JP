@@ -158,7 +158,7 @@ const ManuscriptSubmission = ({setActivePage}) => {
     formDataToSend.append("manuscriptFile", formData.manuscriptFile);
 
     try {
-      const response = await fetch("https://www.ajga-journal.org/api/submit_manuscript.php", {
+      const response = await fetch("https://www.fuprecosjournals.org/api/submit_manuscript.php", {
         method: "POST",
         body: formDataToSend,
       });
@@ -196,7 +196,7 @@ const ManuscriptSubmission = ({setActivePage}) => {
     const fetchManuscripts = async () => {
       try {
         const response = await fetch(
-          `https://www.ajga-journal.org/api/get_manuscripts_by_author.php?author_id=${authorId}`,
+          `https://www.fuprecosjournals.org/api/get_manuscripts_by_author.php?author_id=${authorId}`,
           { cache: "no-store" } // Prevent caching
         );
         const data = await response.json();
@@ -278,7 +278,7 @@ const ManuscriptSubmission = ({setActivePage}) => {
 
           <FileInput id="file" type="file" accept=".doc,.docx,.pdf" required onChange={handleFileChange} />
           <FileLabel htmlFor="file">
-            <FaUpload /> Upload Manuscript
+            <FaUpload /> Upload File
           </FileLabel>
 
           {fileName && <FileNameDisplay>Selected File: {fileName}</FileNameDisplay>}

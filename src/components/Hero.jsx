@@ -1,62 +1,3 @@
-// import React from "react";
-// import styled from "styled-components";
-// import heroVideo from "../Images/media1.mp4";
-
-// const HeroContainer = styled.section`
-//   position: relative;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   height: 100vh;
-//   text-align: center;
-//   overflow: hidden;
-
-//   video {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-//     object-fit: cover;
-//   }
-// `;
-
-// const HeroText = styled.div`
-//   padding: 30px;
-//   border-radius: 10px;
-//   z-index: 1;
-
-//   h1 {
-//     font-size: 3.5rem;
-//     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-//     color: white;
-//   }
-  
-//   p {
-//     font-size: 1.5rem;
-//     color: white;
-//     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
-//   }
-// `;
-
-// const Hero = () => {
-//   return (
-//     <HeroContainer>
-//       <video autoPlay muted loop>
-//         <source src={heroVideo} type="video/mp4" />
-//       </video>
-//       <HeroText>
-//         <h1>Welcome to AJGA Journal</h1>
-//         <p>Advancing knowledge and innovation globally</p>
-//       </HeroText>
-//     </HeroContainer>
-//   );
-// };
-
-// export default Hero;
-
-
-
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import heroVideo from "../Images/media1.mp4";
@@ -81,18 +22,29 @@ const HeroContainer = styled.section`
   }
 `;
 
+// Transparent overlay ABOVE video but BELOW text
+const HeroOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2); /* Adjust opacity here */
+  z-index: 1;
+`;
+
 // Text Container
 const HeroText = styled.div`
   position: absolute;
-  z-index: 2;
+  z-index: 2; /* Text above overlay */
   text-align: center;
 `;
 
 const HeroTitle = styled.h1`
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   font-weight: bold;
   color: white;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.9);
   opacity: 0;
   transform: translateY(50px);
   animation: ${(props) => (props.isVisible ? "flyInFromBottom 1.5s ease-out forwards" : "none")};
@@ -121,7 +73,7 @@ const HeroTitle2 = styled.h2`
   font-size: 2rem;
   font-weight: bold;
   color: white;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
   opacity: 0;
   transform: translateY(50px);
   animation: ${(props) => (props.isVisible ? "flyInFromSide 1.5s ease-out forwards" : "none")};
@@ -137,15 +89,14 @@ const HeroTitle2 = styled.h2`
   @keyframes flyInFromSide {
     from {
       opacity: 0;
-      transform: translatex(500px);
+      transform: translateX(500px);
     }
     to {
       opacity: 1;
-      transform: translatex(0);
+      transform: translateX(0);
     }
   }
 `;
-
 
 const HeroSubtitle = styled.p`
   font-size: 1.5rem;
@@ -180,7 +131,7 @@ const Hero = () => {
   const heroRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Intersection Observer to detect when the section is in view
+  // Intersection Observer
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -203,14 +154,19 @@ const Hero = () => {
       <video autoPlay muted loop>
         <source src={heroVideo} type="video/mp4" />
       </video>
+
+      {/* Overlay added */}
+      <HeroOverlay />
+
       <HeroText>
-        <HeroTitle isVisible={isVisible}>AJGA</HeroTitle>
-        <HeroTitle2 isVisible={isVisible}>AFRICAN JOURNAL OF GENERAL AGRICULTURE</HeroTitle2>
-        <HeroSubtitle isVisible={isVisible}>Advancing knowledge and innovation globally</HeroSubtitle>
+        <HeroTitle isVisible={isVisible}>FUPRE JP</HeroTitle>
+        <HeroTitle2 isVisible={isVisible}>
+          FUPRE JOURNAL OF PETROSCIENCE MATERIALS
+        </HeroTitle2>
+        {/* <HeroSubtitle isVisible={isVisible}>Advancing knowledge and innovation globally</HeroSubtitle> */}
       </HeroText>
     </HeroContainer>
   );
 };
 
 export default Hero;
-

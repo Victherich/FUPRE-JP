@@ -211,7 +211,7 @@ const AuthorSignUp = () => {
     });
   
     try {
-      const response = await fetch("https://www.ajga-journal.org/api/author_signup.php", {
+      const response = await fetch("https://www.fuprecosjournals.org/api/author_signup.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),

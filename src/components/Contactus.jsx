@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import styled from "styled-components";
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPlus, FaMinus, FaTwitter, FaLinkedin, FaFacebook, FaPaperPlane, FaGlobe } from "react-icons/fa";
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaPlus, FaMinus, FaTwitter, FaLinkedin, FaFacebook, FaGlobe } from "react-icons/fa";
 import contactimg from "../Images/contactimg.jpg";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -9,14 +8,12 @@ import axios from "axios";
 // Styled Components
 const ContactPage = styled.div`
   font-family: "Arial", sans-serif;
-  background: white;
-  color: #333;
-  padding: 50px 20px;
-  text-align: center;
-  padding-top: 100px;
-  position: relative;
   background-image: url(${contactimg});
   background-size: cover;
+  background-position: center;
+  padding: 100px 20px 60px;
+  position: relative;
+  color: #003366;
 
   &::before {
     content: "";
@@ -25,25 +22,29 @@ const ContactPage = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.75);
+    z-index: 0;
   }
 `;
 
-const Title = styled.h1`
-  font-size: 2.5rem;
-  margin-bottom: 20px;
-  color: rgba(0,0,255,0.5);
+const PageTitle = styled.h1`
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+  text-align: center;
   position: relative;
+  z-index: 1;
+  color: #003366;
 `;
 
 const ContactContainer = styled.div`
   max-width: 900px;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 40px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   position: relative;
+  z-index: 1;
 `;
 
 const ContactItem = styled.div`
@@ -52,7 +53,6 @@ const ContactItem = styled.div`
   gap: 15px;
   font-size: 1.2rem;
   margin: 15px 0;
-  color: rgba(0,0,255,0.5);
 `;
 
 const FAQSection = styled.div`
@@ -60,27 +60,24 @@ const FAQSection = styled.div`
   margin: 40px auto;
   text-align: left;
   position: relative;
+  z-index: 1;
 `;
 
 const FAQTitle = styled.h2`
   font-size: 2rem;
   text-align: center;
   margin-bottom: 20px;
-  color: rgba(0,0,255,0.5);
-  `;
+  color: #003366;
+`;
 
 const FAQItem = styled.div`
-  background: #eef2ff;
+  background: #e6f0ff;
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
-  border: 1px solid #004080;
-
-  &:hover {
-    // background: rgba(0, 0, 255, 0.1);
-  }
+  border: 1px solid #003366;
 `;
 
 const Question = styled.div`
@@ -92,7 +89,7 @@ const Question = styled.div`
 const Answer = styled.p`
   margin-top: 10px;
   font-size: 1rem;
-  color: #555;
+  color: #003366;
   display: ${({ show }) => (show ? "block" : "none")};
 `;
 
@@ -107,28 +104,25 @@ const FormContainer = styled.div`
   max-width: 600px;
   margin: 40px auto;
   padding: 30px;
-  background: rgba(255,255,255,0.5);
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  position:relative;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
 `;
 
 const FormTitle = styled.h2`
   font-size: 2rem;
   margin-bottom: 20px;
-  color: rgba(0, 0, 255, 0.5);
+  color: #003366;
 `;
-
 
 const Input = styled.input`
   width: 100%;
   padding: 12px;
   margin: 10px 0;
   font-size: 1rem;
-  border: 1px solid rgba(0, 0, 255, 0.3);
+  border: 1px solid #003366;
   border-radius: 5px;
-  background: #fff;
-  color: #333;
   outline: none;
 `;
 
@@ -137,16 +131,14 @@ const TextArea = styled.textarea`
   padding: 12px;
   margin: 10px 0;
   font-size: 1rem;
-  border: 1px solid rgba(0, 0, 255, 0.3);
+  border: 1px solid #003366;
   border-radius: 5px;
-  background: #fff;
-  color: #333;
   outline: none;
   height: 120px;
 `;
 
 const SubmitButton = styled.button`
-  background: rgba(0, 0, 255, 0.5);
+  background: #003366;
   color: white;
   padding: 12px 20px;
   font-size: 1rem;
@@ -156,136 +148,53 @@ const SubmitButton = styled.button`
   transition: 0.3s;
 
   &:hover {
-    background: rgba(0, 0, 255, 0.7);
-  }
-`;
-
-const FooterSection = styled.div`
-position:relative;
-  h2 {
-    font-size: 20px;
-    color: rgba(0,0,255,0.5);
-    margin-bottom: 15px;
-  }
-  p, a {
-    font-size: 14px;
-    // color: #eee;
-    transition: color 0.3s ease-in-out;
-    margin-top:5px;
-  }
-  a:hover {
-    color: white;
-  }
-`;
-
-const NewsletterInput = styled.input`
-  // width: 80%;
-  padding: 10px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  font-size: 14px;
-  margin-right:10px;
-`;
-
-const SubscribeButton = styled.button`
-  background: #007bff;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  margin-top: 10px;
-  cursor: pointer;
-  transition: background 0.3s;
-  &:hover {
-    background: #0056b3;
+    background: #0055aa;
   }
 `;
 
 const ContactSupport = () => {
   const [openFAQ, setOpenFAQ] = useState(null);
-    const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
 
-    const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-
+  const handleInputChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    Swal.fire({
-      title: 'Sending...',
-      allowOutsideClick: false,
-      didOpen: () => {
-        Swal.showLoading();
-      }
-    });
+    Swal.fire({ title: "Sending...", allowOutsideClick: false, didOpen: () => Swal.showLoading() });
     try {
-      const response = await axios.post('https://www.ajga-journal.org/api/contact_form_endpoint.php', formData, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
+      const response = await axios.post('https://www.fuprecosjournals.org/api/contact_form_endpoint.php', formData, {
+        headers: { 'Content-Type': 'application/json' }
       });
       if (response.data.success) {
-    
-        setFormData({ name: '', email: '', phone: '', message: '' });
-        Swal.fire({
-          icon: 'success',
-          title: 'Success!',
-          text: response.data.message
-        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        Swal.fire({ icon: "success", title: "Success!", text: response.data.message });
       } else {
-   
-        Swal.fire({
-          icon: 'error',
-          title: 'Error!',
-          text: response.data.error
-        });
+        Swal.fire({ icon: "error", title: "Error!", text: response.data.error });
       }
     } catch (error) {
-
-      console.error(error)
-      Swal.fire({
-        icon: 'error',
-        title: 'Error!',
-        text: 'There was an error sending the message.'
-      });
+      console.error(error);
+      Swal.fire({ icon: "error", title: "Error!", text: "There was an error sending the message." });
     }
   };
 
   const faqs = [
-    { question: "How do I submit a manuscript?", answer: "Manuscripts must be submitted via the online submission portal. A detailed guide is available in the Author Guidelines section." },
-    { question: "What is the timeline for peer review?", answer: "The journal follows a double-blind peer review process, typically taking 6-8 weeks." },
-    { question: "How can I check the status of my submission?", answer: "Authors can track their manuscript’s progress via the submission dashboard. Status updates are also sent via email." },
-    { question: "Are there article processing charges (APCs)?", answer: "Yes, APCs apply after acceptance to cover editorial and publication costs. Waivers and discounts are available under specific conditions." },
-    { question: "Can I request a waiver for APCs?", answer: "Authors from low-income countries or NISEB members may apply for APC waivers or discounts." },
-    { question: "How do I make corrections after submission?", answer: "Authors may update their manuscript before editorial screening. For major corrections post-review, a revision request must be submitted." },
-    { question: "How can I become a reviewer?", answer: "Researchers with relevant expertise can apply via the Reviewer Registration Portal on the journal website." },
-    { question: "What are the review guidelines?", answer: "Reviewers must assess manuscripts based on originality, methodology, clarity, ethical compliance, and scientific contribution." },
-    { question: "How much time do I have to review a manuscript?", answer: "Standard review time is 2-4 weeks. Extensions can be requested in special cases." },
-    { question: "Can I decline a review request?", answer: "Yes, reviewers should decline if they have a conflict of interest or lack the expertise to evaluate the manuscript." }
+    { question: "How do I submit a manuscript?", answer: "Manuscripts must be submitted via the online submission portal." },
+    { question: "What is the review timeline?", answer: "The journal typically completes peer review in 6-8 weeks." },
+    { question: "Are there publication fees?", answer: "Article processing charges (APCs) apply after acceptance." },
   ];
 
   return (
     <ContactPage>
-      <Title>Contact & Support</Title>
+      <PageTitle>Contact & Support</PageTitle>
 
       <ContactContainer>
-        <h2>Editorial Office Contact Information</h2>
-        <p><strong>African Journal of General Agriculture</strong></p>
-        <p>Society for Experimental Biology of Nigeria (NISEB)</p>
-        <p>Department of Environmental Management and Toxicology, Federal University of Petroleum Resources, Effurun, Delta State, Nigeria</p>
-        <ContactItem><FaEnvelope /> Email: support@ajga-journal.org</ContactItem>
-        <ContactItem><FaPhone /> Phone: +234 803-715-9452</ContactItem>
-        <ContactItem><FaGlobe /> Website: www.ajga-journal.org</ContactItem>
-        <p><strong>Response Time:</strong> 2-3 business days</p>
+        <h2>Editorial Office Contact</h2>
+        <p><strong>FUPRE Journal of Petroscience</strong></p>
+        <p>College of Science, Federal University of Petroleum Resources, Effurun, Delta State, Nigeria</p>
+        <ContactItem><FaEnvelope /> Email: journal@fupre.edu.ng</ContactItem>
+        <ContactItem><FaPhone /> Phone: +234 (0) 123 456 7890</ContactItem>
+        <ContactItem><FaGlobe /> Website: www.fuprejournals.edu.ng</ContactItem>
+        <ContactItem><FaMapMarkerAlt /> Response Time: 2-3 business days</ContactItem>
       </ContactContainer>
 
       <FAQSection>
@@ -298,91 +207,27 @@ const ContactSupport = () => {
         ))}
       </FAQSection>
 
-      <ContactContainer>
-        <h2>Technical Support</h2>
-        <ContactItem><FaEnvelope /> Email: support@ajga-journal.org</ContactItem>
-        <ContactItem><FaPhone /> Phone: +234 803-715-9452</ContactItem>
-      </ContactContainer>
-
       <FormContainer>
-        <FormTitle>Contact Us</FormTitle>
+        <FormTitle>Send Us a Message</FormTitle>
         <form onSubmit={handleSubmit}>
-          <Input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            placeholder="Your Name"
-            required
-          />
-          <Input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            placeholder="Your Email"
-            required
-          />
-          <Input
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleInputChange}
-            placeholder="Your Phone Number"
-            required
-          />
-          <TextArea
-            name="message"
-            value={formData.message}
-            onChange={handleInputChange}
-            placeholder="Your Message"
-            required
-          />
+          <Input name="name" value={formData.name} onChange={handleInputChange} placeholder="Your Name" required />
+          <Input name="email" value={formData.email} onChange={handleInputChange} placeholder="Your Email" required />
+          <Input name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Your Phone Number" required />
+          <TextArea name="message" value={formData.message} onChange={handleInputChange} placeholder="Your Message" required />
           <SubmitButton type="submit">Send Message</SubmitButton>
         </form>
       </FormContainer>
 
       <FAQSection>
-        <FAQTitle>Social Media</FAQTitle>
-        <p style={{textAlign:"center"}}>Follow us on social media for updates, research highlights, and calls for papers:</p>
+        <FAQTitle>Follow Us</FAQTitle>
         <SocialIcons>
-        <a href="https://facebook.com/AJGAJournal" target="_blank" rel="noopener noreferrer">
-            <FaFacebook size={30} color="#1877F2" />
-          </a>
-          
-          <a href="https://twitter.com/AJGA_Journal" target="_blank" rel="noopener noreferrer">
-            <FaTwitter size={30} color="#1DA1F2" />
-          </a>
-          <a href="https://linkedin.com/company/african-journal-of-general-agriculture" target="_blank" rel="noopener noreferrer">
-            <FaLinkedin size={30} color="#0077B5" />
-          </a>
-          
+          <a href="#"><FaFacebook size={30} color="#1877F2" /></a>
+          <a href="#"><FaTwitter size={30} color="#1DA1F2" /></a>
+          <a href="#"><FaLinkedin size={30} color="#0077B5" /></a>
         </SocialIcons>
       </FAQSection>
-
-      {/* <FAQSection>
-        <FAQTitle>Email Alerts & Newsletters</FAQTitle>
-        <p>Sign up to receive:</p>
-        <ul>
-          <li>📩 Table of Contents (TOC) Alerts</li>
-          <li>📩 Call for Papers & Special Issues</li>
-          <li>📩 Editorial & Peer Review Updates</li>
-          <li>📩 Research Highlights & Author Spotlights</li>
-        </ul>
-        <p>Sign up via our website: <a href="http://www.ajga-journal.org">www.ajga-journal.org</a></p>
-      </FAQSection> */}
-{/* 
-<FooterSection>
-                    <h2>Newsletter</h2>
-                    <p>Stay updated with our latest updates.</p>
-                    <div>
-                        <NewsletterInput type="email" placeholder="Enter your email" />
-                        <SubscribeButton>Subscribe</SubscribeButton>
-                    </div>
-                </FooterSection> */}
     </ContactPage>
   );
 };
 
 export default ContactSupport;
-

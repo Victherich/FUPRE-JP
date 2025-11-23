@@ -112,7 +112,7 @@ const [statusData, setStatusData]=useState('')
     const fetchManuscripts = async () => {
       try {
         const response = await fetch(
-          `https://www.ajga-journal.org/api/get_manuscripts_assigned_to_a_reviewer.php?reviewer_id=${reviewerId}`,
+          `https://www.fuprecosjournals.org/api/get_manuscripts_assigned_to_a_reviewer.php?reviewer_id=${reviewerId}`,
           { cache: "no-store" } // Prevent caching
         );
         const data = await response.json();
@@ -177,7 +177,7 @@ const [statusData, setStatusData]=useState('')
     Swal.showLoading();
 
     try {
-      const response = await axios.post('https://www.ajga-journal.org/api/update_manuscript_status.php', {
+      const response = await axios.post('https://www.fuprecosjournals.org/api/update_manuscript_status.php', {
         manuscript_id: manuscriptId,
         status: statusData
       });
@@ -322,6 +322,7 @@ useEffect(() => {
                   </TdValue>
                 </tr>
               </tbody>
+              <p>APC PAYMENT</p>
             </Table>
             {manuscript.comment&&<CommentComponent manuscriptId={manuscript.id} handleCloseComments={handleCloseComments}/>}
           </TableContainer>

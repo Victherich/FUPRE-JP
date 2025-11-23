@@ -46,28 +46,65 @@ code {
 
 
 
-/* rain */
-/* Raindrops.css */
+/* 
 .raindrop {
   position: fixed;
   top: 0;
   width: 2px;
   height: 15px;
-  background: rgba(173, 216, 230, 0.8); /* Light blue */
+  background: rgba(173, 216, 230, 0.8);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   animation: fall linear infinite;
 }
 
-/* Animation for falling raindrops */
+
 @keyframes fall {
   0% {
-    transform: translateY(-10px); /* Start above screen */
+    transform: translateY(-10px);
     opacity: 1;
   }
   100% {
-    transform: translateY(100vh); /* End at the bottom */
-    opacity: 0; /* Fade out on impact */
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+} */
+
+
+
+/* Fireflies.css */
+.firefly {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+
+   background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(2px);
+  animation: fly linear infinite;
+}
+
+@keyframes fly {
+  0% {
+    transform: translate(0, 0) scale(0.5);
+    opacity: 0.2;
+  }
+  25% {
+    transform: translate(20px, -30px) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-15px, -60px) scale(0.8);
+    opacity: 0.6;
+  }
+  75% {
+    transform: translate(30px, -90px) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-10px, -130px) scale(0.5);
+    opacity: 0;
   }
 }

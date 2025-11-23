@@ -6,7 +6,7 @@ import {
     FaTools, FaPalette, FaBalanceScale, FaUsers, FaGavel, FaFutbol,
     FaMusic, FaUtensils, FaGlobe, FaDragon, FaSeedling, FaSkullCrossbones, 
     FaRecycle, FaShieldAlt, FaGlobeAmericas,
-    FaFolderOpen
+    FaFolderOpen, FaIndustry, FaWater
   } from "react-icons/fa";
 
 
@@ -14,13 +14,12 @@ export const Context = createContext();
 
 const ContextProvider = ({children}) => {
 
-  const categories = [
-    { id: 0, name: "All Publications", icon: <FaFolderOpen /> },
-    { id: 1, name: "Agricultural Sciences (Crop, Livestock, Biotechnology)", icon: <FaSeedling /> },
-    { id: 2, name: "Environmental Toxicology & Pollution Control", icon: <FaSkullCrossbones /> },
-    { id: 3, name: "Bioremediation & Environmental Management", icon: <FaRecycle /> },
-    { id: 4, name: "Food Safety, Health & Biosecurity", icon: <FaShieldAlt /> },
-    { id: 5, name: "Climate Change & Sustainable Development", icon: <FaGlobeAmericas /> },
+const categories = [
+    { id: 0, name: "All Publications", icon: <FaFolderOpen /> }, // general folder
+    { id: 1, name: "All fields of General Science", icon: <FaFlask /> }, // science/lab
+    { id: 2, name: "Developments of the Petroleum industry", icon: <FaIndustry /> }, // industry/petro
+    { id: 3, name: "Monitoring and Management", icon: <FaWater /> }, // environmental/monitoring
+    { id: 4, name: "Green and sustainable energy", icon: <FaLeaf /> }, // sustainability/green energy
 ];
 
 const status = [

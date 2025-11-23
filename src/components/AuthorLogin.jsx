@@ -120,7 +120,7 @@ const AuthorLogin = () => {
     });
 
     try {
-      const response = await fetch("https://www.ajga-journal.org/api/author_login.php", {
+      const response = await fetch("https://www.fuprecosjournals.org/api/author_login.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

@@ -66,8 +66,7 @@ const PublishingPolicyIntro = () => {
     <SubmitContainer id="submit">
       <SubmitText>
         <h2>Publishing Policies</h2>
-        <p>The African Journal of General Agriculture upholds rigorous peer review, ethical publishing, and open access to ensure high-quality research dissemination. As an official NISEB journal, we promote transparency, global collaboration, and broad accessibility. Explore our policies on open access, article processing charges, copyright, peer review, and indexing to learn more.:</p>
-        <ol>
+       <p>This journal upholds rigorous peer review, ethical publishing practices, and broad accessibility to ensure the dissemination of high-quality research. We emphasize transparency, global collaboration, and responsible scholarly communication. Explore our policies on open access, article processing charges, copyright, peer review, and indexing to learn more.</p> <ol>
    
         </ol>
       </SubmitText>

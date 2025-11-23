@@ -37,7 +37,7 @@
 //   useEffect(() => {
 //     const fetchReviewers = async () => {
 //       try {
-//         const response = await fetch('https://www.ajga-journal.org/api/get_all_reviewers.php');
+//         const response = await fetch('https://www.fuprecosjournals.org/api/get_all_reviewers.php');
 //         const data = await response.json();
 
 //         if (data.success) {
@@ -77,7 +77,7 @@
 //   const fetchManuscriptsByReviewer = async (reviewerId) => {
 //     try {
 //       setLoading(true);
-//       const response = await axios.get(`https://www.ajga-journal.org/api/get_manuscripts_assigned_to_reviewer.php?reviewer_id=${reviewerId}`);
+//       const response = await axios.get(`https://www.fuprecosjournals.org/api/get_manuscripts_assigned_to_reviewer.php?reviewer_id=${reviewerId}`);
       
 //       if (response.data.success) {
 //         setManuscripts(response.data.manuscripts);
@@ -189,7 +189,7 @@ const AllReviewers = () => {
   useEffect(() => {
     const fetchReviewers = async () => {
       try {
-        const response = await fetch('https://www.ajga-journal.org/api/get_all_reviewers.php');
+        const response = await fetch('https://www.fuprecosjournals.org/api/get_all_reviewers.php');
         const data = await response.json();
 
         if (data.success) {
@@ -221,7 +221,7 @@ const AllReviewers = () => {
       setError((prevState) => ({ ...prevState, [reviewerId]: '' }));
       
       const response = await axios.get(
-        `https://www.ajga-journal.org/api/get_manuscripts_assigned_to_all_reviewers.php?reviewer_id=${reviewerId}`
+        `https://www.fuprecosjournals.org/api/get_manuscripts_assigned_to_all_reviewers.php?reviewer_id=${reviewerId}`
       );
 
       if (response.data.success) {

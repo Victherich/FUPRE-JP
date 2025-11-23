@@ -1,89 +1,45 @@
-// import React from "react";
-// import styled from "styled-components";
-
-// const FooterContainer = styled.footer`
-//   background: rgba(0, 0, 0, 0.7);
-//   text-align: center;
-//   padding: 20px;
-//   color: white;
-// `;
-
-// const Footer = () => {
-//   return (
-//     <FooterContainer>
-//       <p>&copy; 2025 World Journal. All rights reserved.</p>
-//     </FooterContainer>
-//   );
-// };
-
-// export default Footer;
-
-
-
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaArrowUp } from "react-icons/fa";
+import { FaArrowUp, FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import axios from "axios";
 
-// Styled Components for Footer
 const FooterContainer = styled.footer`
-  background: #555;
-  color: #ddd;
-  padding: 50px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  background: rgba(0, 0, 50, 0.5);
+  color: white;
+  padding: 60px 20px 30px;
+  backdrop-filter: blur(6px);
+  position: relative;
 `;
 
 const FooterGrid = styled.div`
-  max-width: 1200px;
-  width: 100%;
+  max-width: 1300px;
+  margin: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 40px;
-  padding-bottom: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 45px;
 `;
 
 const FooterSection = styled.div`
   h2 {
-    font-size: 20px;
-    color: white;
+    font-size: 1.3rem;
+    color: #ffffff;
     margin-bottom: 15px;
+    font-weight: 900;
+    letter-spacing: 0.8px;
   }
+
   p, a {
-    font-size: 14px;
-    color: #eee;
-    transition: color 0.3s ease-in-out;
-    margin-top:5px;
-  }
-  a:hover {
+    font-size: 15px;
     color: white;
+    display: block;
+    margin-top: 8px;
+    line-height: 1.5;
+    cursor: pointer;
+    transition: color 0.3s ease;
   }
-`;
 
-const NewsletterInput = styled.input`
-  width: 80%;
-  padding: 10px;
-  margin-top: 10px;
-  border: none;
-  border-radius: 5px;
-  outline: none;
-  font-size: 14px;
-`;
-
-const SubscribeButton = styled.button`
-  background: #007bff;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  margin-top: 10px;
-  cursor: pointer;
-  transition: background 0.3s;
-  &:hover {
-    background: #0056b3;
+  a:hover {
+    color: #ffffff;
   }
 `;
 
@@ -91,170 +47,154 @@ const SocialIcons = styled.div`
   display: flex;
   gap: 15px;
   margin-top: 10px;
+
   a {
-    color: #ddd;
+    color: #cfd4e3;
     font-size: 22px;
-    transition: color 0.3s ease-in-out;
+    transition: 0.3s ease;
   }
+
   a:hover {
-    color: #007bff;
+    color: #ffffff;
+    transform: scale(1.1);
   }
 `;
 
-const Copyright = styled.div`
-  text-align: center;
+const NewsletterInput = styled.input`
   width: 100%;
-  padding-top: 20px;
-  border-top: 1px solid #222;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+`;
+
+const SubscribeButton = styled.button`
+  margin-top: 12px;
+  padding: 12px 16px;
+  font-size: 15px;
+  border: none;
+  background: #0048ff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 100%;
+
+  &:hover {
+    background: #002f9c;
+  }
+`;
+
+const FooterInfo = styled.div`
+  margin-top: 45px;
+  text-align: center;
+  color: #ebedf1ff;
   font-size: 14px;
+  line-height: 1.6;
 `;
 
 const BackToTop = styled.button`
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #007bff;
+  bottom: 22px;
+  right: 22px;
+  background: #0048ff;
   color: white;
   border: none;
   padding: 12px;
   border-radius: 50%;
   cursor: pointer;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-  transition: background 0.3s ease-in-out, transform 0.2s;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+  transition: 0.3s ease;
+
   &:hover {
-    background: #0056b3;
-    transform: scale(1.1);
+    background: #002f9c;
+    transform: scale(1.15);
   }
 `;
 
 export default function Footer() {
-    const [showTopBtn, setShowTopBtn] = useState(false);
-    const navigate=useNavigate();
-    const [email, setEmail]=useState('')
+  const [showTopBtn, setShowTopBtn] = useState(false);
+  const navigate = useNavigate();
 
-    const handleSubmit = async (e) => {
-   
+  useEffect(() => {
+    window.addEventListener("scroll", () => setShowTopBtn(window.scrollY > 300));
+  }, []);
 
-      e.preventDefault();
-      Swal.fire({
-        title: 'Subscribing...',
-        allowOutsideClick: false,
-        didOpen: () => {
-          Swal.showLoading();
-        }
-      });
-  
-      try {
-        const response = await axios.post('https://www.ajga-journal.org/api/newsletter_subscribe.php', 
-          { email },
-          {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          }
-        );
-  
-        if (response.data.success) {
-          setEmail('');
-          Swal.fire({
-            icon: 'success',
-            title: 'Success!',
-            text: response.data.message
-          });
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Error!',
-            text: response.data.error
-          });
-        }
-      } catch (error) {
-        console.error(error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Error!',
-          text: 'There was an error processing your subscription.'
-        });
-      }
-    };
-  
+  return (
+    <FooterContainer>
+      <FooterGrid>
+        {/* About Section */}
+        <FooterSection>
+          <h2>Journal of Petroscience</h2>
+          <p>A peer-reviewed platform committed to advancing research in reservoir studies, drilling innovation, geoscience, and sustainable energy exploration.</p>
+        </FooterSection>
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowTopBtn(window.scrollY > 300);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+        {/* Quick Links */}
+        <FooterSection>
+          <h2>Quick Links</h2>
+          <a onClick={() => navigate("/")}>Home</a>
+          <a onClick={() => navigate("/aboutus")}>About</a>
+          <a onClick={() => navigate("/publishingpolicy")}>Publishing Policies</a>
+          <a onClick={() => navigate("/authorlogin")}>Submit a Manuscript</a>
+          <a onClick={() => navigate("/contactus")}>Contact</a>
+        </FooterSection>
 
+        {/* Indexing Info */}
+        <FooterSection>
+          <h2>Journal Information</h2>
+          <p>ISSN (Print): 1234-5678</p>
+          <p>ISSN (Online): xxxx-xxxx</p>
+          <p>Indexed in:</p>
+          <p>• Google Scholar</p>
+          <p>• Scopus</p>
+          <p>• Web of Science</p>
+        </FooterSection>
 
+        {/* Contact Info */}
+        <FooterSection>
+          <h2>Contact</h2>
+          <p>College of Science, Federal University of Petroleum Resources Effurun,</p>
+          <p>Delta State, Nigeria</p>
+          <p>📧 journal@fupre.edu.ng</p>
+          <p>📞 +234 (0) 123 456 7890</p>
+          <SocialIcons>
+            <a href="#"><FaFacebook /></a>
+            <a href="#"><FaTwitter /></a>
+            <a href="#"><FaLinkedin /></a>
+          </SocialIcons>
+        </FooterSection>
 
+        {/* Newsletter */}
+        <FooterSection>
+          <h2>Stay Updated</h2>
+          <p>Get alerts on new issues, calls for papers, and journal updates.</p>
+          <NewsletterInput type="email" placeholder="Enter your email" required />
+          <SubscribeButton>Subscribe</SubscribeButton>
+        </FooterSection>
+      </FooterGrid>
 
-    return (
-        <FooterContainer>
-            <FooterGrid>
-                {/* About Section */}
-                <FooterSection>
-                    <h2 style={{fontFamily:"Brush Script MT, Brush Script Std, cursive"}}>AJGA Journal</h2>
-                    <p>We offer high-quality educational resources designed to support researchers, educators, and students in expanding their knowledge and advancing academic excellence.</p>
-                    <br/><p>📍 African Journal of General Agriculture
+      <FooterInfo>
+        © {new Date().getFullYear()} Journal of Petroscience. All rights reserved.
+        <br />
+        <a style={{ textDecoration: "underline", cursor: "pointer" }} onClick={() => navigate("/publishingpolicy")}>
+          Publishing Policy
+        </a>
+      </FooterInfo>
 
-Society for Experimental Biology of Nigeria (NISEB)
+      <FooterInfo>
+     
+        <a style={{ textDecoration: "underline", cursor: "pointer" }} onClick={() =>window.open('https://elexdontech.com/', '_blank')}>
+          POWERED BY ELEXDON TECHNOLOGIES LIMITED
+        </a>
+      </FooterInfo>
 
-Department of Environmental Management and Toxicology, Federal University of Petroleum Resources, Effurun, Delta State, Nigeria</p>
-                    <p>📞 +234 803-715-9452</p>
-                    <p>📧 support@ajga-journal.org</p>
-                </FooterSection>
-
-                {/* Quick Links */}
-                <FooterSection>
-                    <h2>Quick Links</h2>
-                    <p><a style={{cursor:"pointer"}} onClick={()=>navigate('/')}>Home</a></p>
-                    <p><a style={{cursor:"pointer"}} onClick={()=>navigate('/aboutus')}>About us</a></p>
-                    <p><a style={{cursor:"pointer"}} onClick={()=>navigate('/issuesandpubs/0')}>Issues & Publications</a></p>
-                    <p><a style={{cursor:"pointer"}} onClick={()=>navigate('/publishingpolicy')}>Publishing Policy</a></p>
-                    <p><a style={{cursor:"pointer"}} onClick={()=>navigate('/contactus')}>Contact us</a></p>
-                   
-                </FooterSection>
-
-                {/* Newsletter */}
-                <FooterSection>
-                    <h2>Newsletter</h2>
-                    <p>Stay updated with our latest updates.</p>
-                    <div>
-                      <form onSubmit={handleSubmit}>
-                      <NewsletterInput required type="email" placeholder="Enter your email" onChange={(e)=>setEmail(e.target.value)}/>
-                        <SubscribeButton type="submit">Subscribe</SubscribeButton>
-                   
-                      </form>
-                   
-                    </div>
-                </FooterSection>
-
-                {/* Social Media */}
-                <FooterSection>
-                    <h2>Follow Us</h2>
-                    <SocialIcons>
-                    <a href="https://facebook.com/AJGAJournal" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
-                        <a href="https://twitter.com/AJGA_Journal" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
-                        <a href="https://twitter.com/AJGA_Journal" target="_blank" rel="noopener noreferrer"><FaLinkedin /></a>
-                    </SocialIcons>
-                </FooterSection>
-            </FooterGrid>
-
-            {/* Copyright */}
-            <Copyright>
-                <p>© {new Date().getFullYear()} AJGA Journal. All rights reserved.</p>
-                <p><a style={{cursor:"pointer", textDecoration:"underline"}} onClick={()=>navigate('/publishingpolicy')}>Publishing Policy</a></p>
-            </Copyright>
-
-            {/* Back to Top Button */}
-            {showTopBtn && (
-                <BackToTop onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-                    <FaArrowUp size={20} />
-                </BackToTop>
-            )}
-        </FooterContainer>
-    );
+      {showTopBtn && (
+        <BackToTop onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+          <FaArrowUp size={18} />
+        </BackToTop>
+      )}
+    </FooterContainer>
+  );
 }
-

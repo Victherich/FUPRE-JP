@@ -77,7 +77,7 @@ const ReviewerProfile = () => {
   const fetchReviewerData = async (id) => {
     try {
       setLoading(true);
-      const response = await axios.get(`https://www.ajga-journal.org/api/get_reviewer_by_id.php?id=${id}`);
+      const response = await axios.get(`https://www.fuprecosjournals.org/api/get_reviewer_by_id.php?id=${id}`);
 
       if (response.data.success) {
         setReviewerData(response.data.reviewer);
@@ -114,7 +114,7 @@ const ReviewerProfile = () => {
     const loadingAlert = Swal.fire({ text: "Please wait..." });
     Swal.showLoading();
     try {
-      const response = await axios.post(`https://www.ajga-journal.org/api/update_reviewer.php`, updatedData);
+      const response = await axios.post(`https://www.fuprecosjournals.org/api/update_reviewer.php`, updatedData);
       
       if (response.data.success) {
         setMessage("Profile updated successfully!");

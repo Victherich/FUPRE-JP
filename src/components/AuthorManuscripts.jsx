@@ -104,7 +104,7 @@ const AuthorManuscripts = ({ setActivePage }) => {
     const fetchManuscripts = async () => {
       try {
         const response = await fetch(
-          `https://www.ajga-journal.org/api/get_manuscripts_by_author.php?author_id=${authorId}`,
+          `https://www.fuprecosjournals.org/api/get_manuscripts_by_author.php?author_id=${authorId}`,
           { cache: "no-store" } // Prevent caching
         );
         const data = await response.json();
@@ -187,7 +187,7 @@ const AuthorManuscripts = ({ setActivePage }) => {
             },
           });
   
-          const response = await fetch("https://www.ajga-journal.org/api/delete_manuscript.php", {
+          const response = await fetch("https://www.fuprecosjournals.org/api/delete_manuscript.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ manuscript_id: manuscriptId }),

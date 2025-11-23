@@ -214,7 +214,7 @@ import React, { useRef, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
-import logo from "../Images/logo.png";
+import logo from "../Images/logo.jpg";
 import Sidebar from "./SideBar";
 import { Context } from "./Context";
 
@@ -224,7 +224,7 @@ const HeaderContainer = styled.header`
   align-items: center;
   padding: 15px 30px;
   // background: rgba(0, 0, 0, 0.7);
-  background:rgba(0,0,255,0.5);
+  background:rgba(114, 114, 141, 0.5);
   position: fixed;
   width: 100%;
   top: 0;
@@ -248,7 +248,7 @@ const Logo = styled.h1`
   font-size: 24px;
   font-weight: bold;
   font-style: italic;
-  font-family: "Brush Script MT", "Brush Script Std", cursive;
+  // font-family: "Brush Script MT", "Brush Script Std", cursive;
   color: white;
   cursor: pointer;
 `;
@@ -414,7 +414,7 @@ const Header = () => {
       {/* Logo */}
       <LogoWrap onClick={() => navigate("/")}>
         <img src={logo} alt="logo" />
-        <Logo>AJGA</Logo>
+        <Logo>FUPRE JP</Logo>
       </LogoWrap>
 
       {/* Hamburger Menu for Mobile */}
@@ -429,6 +429,9 @@ const Header = () => {
         </NavLink>
         <NavLink onClick={() => { navigate("/aboutus"); setMobileMenuOpen(false); }} active={window.location.pathname === "/aboutus"}>
           About Us
+        </NavLink>
+         <NavLink onClick={() => { navigate("/foreward"); setMobileMenuOpen(false); }} active={window.location.pathname === "/foreward"}>
+          Foreword
         </NavLink>
         <NavLink onClick={() => { navigate("/issuesandpubs/0"); setMobileMenuOpen(false); }} active={window.location.pathname.includes("issuesandpubs")}>
           Issues & Publications

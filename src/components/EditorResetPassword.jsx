@@ -119,7 +119,7 @@ const EditorResetPassword = () => {
 
     try {
       const response = await fetch(
-        "https://www.ajga-journal.org/api/editor_reset_password.php",
+        "https://www.fuprecosjournals.org/api/editor_reset_password.php",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

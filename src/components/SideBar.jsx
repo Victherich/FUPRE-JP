@@ -129,7 +129,7 @@ const Sidebar = () => {
     
   //   try {
   //     const response = await axios.get(
-  //       `https://www.ajga-journal.org/api/get_publications_by_category.php?article_category=${articleCategory}`
+  //       `https://www.fuprecosjournals.org/api/get_publications_by_category.php?article_category=${articleCategory}`
   //     );
       
   //     if (response.data.success) {
@@ -149,12 +149,21 @@ const Sidebar = () => {
 
 
   const fetchPublications = async () => {
-    const loadingAlert = Swal.fire({ text: "Please wait..." });
+    // const loadingAlert = Swal.fire({ text: "Please wait..." });
+    Swal.fire({
+  background: "transparent",
+  backdrop: "rgba(0,0,0,0.4)", // or "none"
+  showConfirmButton: false,
+  allowOutsideClick: false,
+  didOpen: () => {
     Swal.showLoading();
+  }
+});
+
   
     try {
       const response = await axios.get(
-        `https://www.ajga-journal.org/api/get_publications_by_category.php?article_category=${articleCategory}`
+        `https://www.fuprecosjournals.org/api/get_publications_by_category.php?article_category=${articleCategory}`
       );
   
       if (response.data.success) {
@@ -202,7 +211,8 @@ const Sidebar = () => {
       Swal.fire({ text: 'Error occurred while fetching publications.' });
       console.error('Fetch error:', error);
     } finally {
-      loadingAlert.close();
+      // loadingAlert.close();
+      Swal.close();
     }
   };
   
@@ -258,7 +268,7 @@ const Sidebar = () => {
     <h3 style={{fontSize:"0.9rem"}}>{pub.title.slice(0,40)}...</h3>
     <p  style={{fontSize:"0.9rem"}} >Volume {pub.volume}, Issue {pub.issue}</p>
     {/* <p>Published: {new Date(pub.created_at).toLocaleDateString()}</p> */}
-    {/* <a href={`https://www.ajga-journal.org/${pub.file_path}`} target="_blank" rel="noreferrer">Download PDF</a> */}
+    {/* <a href={`https://www.fuprecosjournals.org/${pub.file_path}`} target="_blank" rel="noreferrer">Download PDF</a> */}
   </div>
 ))}
 

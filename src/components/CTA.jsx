@@ -21,11 +21,11 @@ const CTAContainer = styled.section`
    position:relative;
 
   h2{
-    color:rgba(0,0,255,0.5);
+    color:#f4f4f4;
     font-size:2rem;
   }
     p{
-    color:#333;
+    color:#f6f6f6;
     }
 `;
 

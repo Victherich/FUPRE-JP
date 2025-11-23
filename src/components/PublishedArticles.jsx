@@ -213,7 +213,7 @@ const PublishedArticles = () => {
     
   //   try {
   //     const response = await axios.get(
-  //       `https://www.ajga-journal.org/api/get_publications_by_category.php?article_category=${articleCategory}`
+  //       `https://www.fuprecosjournals.org/api/get_publications_by_category.php?article_category=${articleCategory}`
   //     );
       
   //     if (response.data.success) {
@@ -237,7 +237,7 @@ const PublishedArticles = () => {
     
       try {
         const response = await axios.get(
-          `https://www.ajga-journal.org/api/get_publications_by_category.php?article_category=${articleCategory}`
+          `https://www.fuprecosjournals.org/api/get_publications_by_category.php?article_category=${articleCategory}`
         );
     
         if (response.data.success) {
@@ -307,7 +307,7 @@ const PublishedArticles = () => {
 
   const fetchAuthors = async () => {
     try {
-      const response = await axios.get('https://www.ajga-journal.org/api/get_all_authors.php');
+      const response = await axios.get('https://www.fuprecosjournals.org/api/get_all_authors.php');
       
       if (response.data.success) {
         setAuthors(response.data.authors);
@@ -343,7 +343,7 @@ const PublishedArticles = () => {
       
       try {
         const response = await fetch(
-          `https://www.ajga-journal.org/api/search_publications_by_title.php?search=${searchTerm}`,
+          `https://www.fuprecosjournals.org/api/search_publications_by_title.php?search=${searchTerm}`,
           { cache: "no-store" }
         );
         const data = await response.json();
@@ -387,7 +387,7 @@ const PublishedArticles = () => {
             },
           });
 
-          const response = await fetch("https://www.ajga-journal.org/api/delete_publication.php", {
+          const response = await fetch("https://www.fuprecosjournals.org/api/delete_publication.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ publication_id: publicationId }),

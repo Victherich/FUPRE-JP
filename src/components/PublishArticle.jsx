@@ -263,7 +263,7 @@ const PublishArticle = ({setActivePage}) => {
     formDataToSend.append("editor_id", editorInfo.id);
 
     try {
-      const response = await fetch("https://www.ajga-journal.org/api/publish_article.php", {
+      const response = await fetch("https://www.fuprecosjournals.org/api/publish_article.php", {
         method: "POST",
         body: formDataToSend,
       });
@@ -313,7 +313,7 @@ const PublishArticle = ({setActivePage}) => {
     
     try {
       const response = await fetch(
-        `https://www.ajga-journal.org/api/search_manuscripts_by_article_code.php?search=${searchTerm2}`,
+        `https://www.fuprecosjournals.org/api/search_manuscripts_by_article_code.php?search=${searchTerm2}`,
         { cache: "no-store" }
       );
       const data = await response.json();
@@ -361,7 +361,7 @@ const getCategoryName = (categoryId) => {
   const fetchReviewerData = async (id) => {
     console.log(id)
     try {
-      const response = await axios.get(`https://www.ajga-journal.org/api/get_reviewer_by_id.php?id=${id}`);
+      const response = await axios.get(`https://www.fuprecosjournals.org/api/get_reviewer_by_id.php?id=${id}`);
   console.log(response.data)
       if (response.data.success) {
         setReviewerEmails(prev => ({
@@ -522,12 +522,12 @@ const getCategoryName = (categoryId) => {
 
           <FileInput id="file" type="file" accept=".pdf" required onChange={handleFileChange} />
           <FileLabel htmlFor="file">
-            <FaUpload /> Upload Manuscript
+            <FaUpload /> Upload File (pdf)
           </FileLabel>
 
           {fileName && <FileNameDisplay>Selected File: {fileName}</FileNameDisplay>}
 
-          <SubmitButton type="submit">Submit Manuscript</SubmitButton>
+          <SubmitButton type="submit">Submit</SubmitButton>
         </form>
       </FormWrapper>}
     </SubmissionContainer>

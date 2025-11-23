@@ -83,7 +83,7 @@ const CommentComponent = ({ manuscriptId, handleCloseComments }) => {
     const fetchComments = async () => {
       try {
         const response = await fetch(
-          `https://www.ajga-journal.org/api/get_comments.php?manuscript_id=${manuscriptId}`
+          `https://www.fuprecosjournals.org/api/get_comments.php?manuscript_id=${manuscriptId}`
         );
         const data = await response.json();
 
@@ -107,7 +107,7 @@ const CommentComponent = ({ manuscriptId, handleCloseComments }) => {
     if (!newComment.trim()) return;
 
     try {
-      const response = await fetch("https://www.ajga-journal.org/api/add_comment.php", {
+      const response = await fetch("https://www.fuprecosjournals.org/api/add_comment.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ manuscript_id: manuscriptId, text: newComment }),
@@ -135,7 +135,7 @@ const CommentComponent = ({ manuscriptId, handleCloseComments }) => {
     if (!text) return;
 
     try {
-      const response = await fetch("https://www.ajga-journal.org/api/add_reply.php", {
+      const response = await fetch("https://www.fuprecosjournals.org/api/add_reply.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ comment_id: commentId, text }),

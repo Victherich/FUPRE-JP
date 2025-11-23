@@ -34,7 +34,7 @@ const FilterAndSearchComponent = ({ setFilteredManuscripts }) => {
 //   useEffect(() => {
 //     const fetchStatusOptions = async () => {
 //       try {
-//         const response = await axios.get('https://www.ajga-journal.org/api/get_status_options.php');
+//         const response = await axios.get('https://www.fuprecosjournals.org/api/get_status_options.php');
 //         if (response.data.success) {
 //           setStatusOptions(response.data.statusOptions);
 //         }
@@ -48,7 +48,7 @@ const FilterAndSearchComponent = ({ setFilteredManuscripts }) => {
   // Filter and search
   const handleFilterAndSearch = async () => {
     try {
-      const response = await axios.get('https://www.ajga-journal.org/api/get_all_manuscripts.php');
+      const response = await axios.get('https://www.fuprecosjournals.org/api/get_all_manuscripts.php');
       if (response.data.success) {
         let filtered = response.data.manuscripts;
 

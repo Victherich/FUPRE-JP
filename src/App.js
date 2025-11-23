@@ -1,4 +1,4 @@
-import logo from './Images/logo.png';
+import logo from './Images/logo.jpg';
 import './App.css';
 import LandingPage from './components/LandingPage';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
@@ -43,6 +43,8 @@ import ReviewerResetPassword from './components/ReviewerResetPassword';
 import ReviewerEmailVerification from './components/ReviewerEmailVerification';
 import ReviewerSignUp from './components/ReviewerSignup';
 import PublicationDetail from './components/PublicationDetail';
+import Fireflies from './components/RainEffects';
+import ForewordPage from './components/ForewardPage';
 
 
 
@@ -53,6 +55,7 @@ function App() {
  {/* <ShootingStars/> */}
  <FloatingBubbles/>
  <Raindrops/>
+ <Fireflies/>
    <Header/>
     <Routes>
       {/* public pages */}
@@ -62,6 +65,7 @@ function App() {
       <Route path="/contactus" element={<ContactSupport/>}/>
       <Route path='/publishingpolicy' element={<PublishingPolicies/>}/>
       <Route path='/publicationdetail/:id' element={<PublicationDetail/>}/>
+      <Route path='/foreward' element={<ForewordPage/>}/>
   
 
 {/* author pages */}
@@ -90,7 +94,7 @@ function App() {
       </Route>
 
       <Route path='/editorsignup' element={<PrivateEditorSignup/>}>
-        {/* <Route path='' element={<EditorSignUp/>}/> */}
+        <Route path='' element={<EditorSignUp/>}/>
       </Route>
 
       <Route path='/editorlogin' element={<PrivateEditorLogin/>}>
@@ -125,7 +129,7 @@ function App() {
 
 
     </Routes>
-    <a><img src={logo} alt="logo" className="WhatsAppIcon" onClick={() => window.open("https://wa.me/2348185609702", "_blank")} /></a> 
+    <a><img src={logo} alt="logo" className="WhatsAppIcon"/></a> 
   
     <Footer/>
    </BrowserRouter>

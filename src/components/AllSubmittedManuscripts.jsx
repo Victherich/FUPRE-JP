@@ -130,7 +130,7 @@ const [statusData, setStatusData]=useState('')
     const fetchManuscripts = async () => {
       try {
         const response = await fetch(
-          `https://www.ajga-journal.org/api/get_all_manuscripts.php`,
+          `https://www.fuprecosjournals.org/api/get_all_manuscripts.php`,
           { cache: "no-store" }
         );
         const data = await response.json();
@@ -150,7 +150,7 @@ const [statusData, setStatusData]=useState('')
 
     const fetchReviewers = async () => {
       try {
-        const response = await fetch("https://www.ajga-journal.org/api/get_reviewers.php");
+        const response = await fetch("https://www.fuprecosjournals.org/api/get_reviewers.php");
         const data = await response.json();
 
         if (data.success) {
@@ -191,7 +191,7 @@ const [statusData, setStatusData]=useState('')
     }
 
     try {
-      const response = await fetch("https://www.ajga-journal.org/api/assign_manuscript_to_reviewer.php", {
+      const response = await fetch("https://www.fuprecosjournals.org/api/assign_manuscript_to_reviewer.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ manuscript_id: manuscriptId, reviewer_id: reviewerId }),
@@ -216,7 +216,7 @@ const [statusData, setStatusData]=useState('')
 
   const handleUnassign = async (manuscriptId) => {
     try {
-      const response = await fetch("https://www.ajga-journal.org/api/unassign_manuscript_from_reviewer.php", {
+      const response = await fetch("https://www.fuprecosjournals.org/api/unassign_manuscript_from_reviewer.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ manuscript_id: manuscriptId }),
@@ -270,7 +270,7 @@ const [statusData, setStatusData]=useState('')
     useEffect(() => {
       const fetchReviewers = async () => {
         try {
-          const response = await fetch('https://www.ajga-journal.org/api/get_all_reviewers.php');
+          const response = await fetch('https://www.fuprecosjournals.org/api/get_all_reviewers.php');
           const data = await response.json();
   
           if (data.success) {
@@ -303,7 +303,7 @@ const [statusData, setStatusData]=useState('')
     const fetchReviewerData = async (id) => {
       console.log(id)
       try {
-        const response = await axios.get(`https://www.ajga-journal.org/api/get_reviewer_by_id.php?id=${id}`);
+        const response = await axios.get(`https://www.fuprecosjournals.org/api/get_reviewer_by_id.php?id=${id}`);
     console.log(response.data)
         if (response.data.success) {
           setReviewerEmails(prev => ({
@@ -343,7 +343,7 @@ const [statusData, setStatusData]=useState('')
     Swal.showLoading();
 
     try {
-      const response = await axios.post('https://www.ajga-journal.org/api/update_manuscript_status.php', {
+      const response = await axios.post('https://www.fuprecosjournals.org/api/update_manuscript_status.php', {
         manuscript_id: manuscriptId,
         status: statusData
       });

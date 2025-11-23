@@ -16,7 +16,7 @@ const PayManuscriptAPCFlutterwave = ({ manuscriptId, amount, authorEmail, setAct
     customizations: {
       title: "Article Processing Charge (APC)",
       description: `Payment of $${amount} APC Fee`,
-      logo: "https://www.ajga-journal.org/logo.png", // URL to your logo (optional)
+      logo: "https://www.fuprecosjournals.org/logo.png", // URL to your logo (optional)
     },
   };
 
@@ -47,7 +47,7 @@ const PayManuscriptAPCFlutterwave = ({ manuscriptId, amount, authorEmail, setAct
               // Call backend to update APC status
               try {
                 const apiResponse = await fetch(
-                  "https://www.ajga-journal.org/api/update_payment_status.php",
+                  "https://www.fuprecosjournals.org/api/update_payment_status.php",
                   {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

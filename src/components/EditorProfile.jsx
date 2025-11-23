@@ -78,7 +78,7 @@ const EditorProfile = () => {
   const fetchAuthorData = async (id) => {
     try {
       setLoading(true);
-      const response = await axios.get(`https://www.ajga-journal.org/api/get_editor_by_id.php?id=${id}`);
+      const response = await axios.get(`https://www.fuprecosjournals.org/api/get_editor_by_id.php?id=${id}`);
 
       if (response.data.success) {
         setAuthorData(response.data.author);
@@ -115,7 +115,7 @@ const EditorProfile = () => {
     const loadingAlert = Swal.fire({text:"Please wait..."})
     Swal.showLoading();
     try {
-      const response = await axios.post(`https://www.ajga-journal.org/api/update_editor.php`, updatedData);
+      const response = await axios.post(`https://www.fuprecosjournals.org/api/update_editor.php`, updatedData);
       
       if (response.data.success) {
         setMessage("Profile updated successfully!");

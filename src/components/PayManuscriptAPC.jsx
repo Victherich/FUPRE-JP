@@ -37,7 +37,7 @@ const PayManuscriptAPC = ({ manuscriptId, amount, authorEmail , setActivePage}) 
             // Call backend to update APC status
             try {
               const response = await fetch(
-                "https://www.ajga-journal.org/api/update_payment_status.php",
+                "https://www.fuprecosjournals.org/api/update_payment_status.php",
                 {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },

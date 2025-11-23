@@ -117,7 +117,7 @@ const {categories, status} = useContext(Context);
         <p><strong>Status:</strong> <StatusBadge status={manuscript.status}>{getStatusName(manuscript.status)?.toUpperCase()}</StatusBadge></p>
         <p><strong>Submitted Date:</strong> {manuscript.submittedDate}</p>
         {/* <p><strong>Last Updated:</strong> {manuscript.lastUpdated}</p> */}
-        <p><strong>File:</strong> <a href={`https://www.ajga-journal.org/api/${manuscript.file_path}`} target="_blank" rel="noopener noreferrer">Download File</a></p>
+        <p><strong>File:</strong> <a href={`https://www.fuprecosjournals.org/api/${manuscript.file_path}`} target="_blank" rel="noopener noreferrer">Download File</a></p>
         <h4>Abstract:</h4>
         <span>{manuscript.abstract}</span>
       </ModalContent>
