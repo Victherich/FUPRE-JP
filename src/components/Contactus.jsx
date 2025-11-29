@@ -191,9 +191,9 @@ const ContactSupport = () => {
         <h2>Editorial Office Contact</h2>
         <p><strong>FUPRE Journal of Petroscience</strong></p>
         <p>College of Science, Federal University of Petroleum Resources, Effurun, Delta State, Nigeria</p>
-        <ContactItem><FaEnvelope /> Email: journal@fupre.edu.ng</ContactItem>
-        <ContactItem><FaPhone /> Phone: +234 (0) 123 456 7890</ContactItem>
-        <ContactItem><FaGlobe /> Website: www.fuprejournals.edu.ng</ContactItem>
+        <ContactItem><FaEnvelope /> Email: cosjournals@fupre.edu.ng</ContactItem>
+        <ContactItem><FaPhone /> Phone: +234 (0) 907 042 2286</ContactItem>
+   
         <ContactItem><FaMapMarkerAlt /> Response Time: 2-3 business days</ContactItem>
       </ContactContainer>
 

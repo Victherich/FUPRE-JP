@@ -713,6 +713,10 @@ const ArchivesPage = () => {
     }
   };
 
+  useEffect(()=>{
+    window.scroll(0,0)
+  },[])
+
   return (
     <>
       <Hero4 />
@@ -759,6 +763,7 @@ const ArchivesPage = () => {
                           <span>{new Date(publication.created_at).getFullYear()}</span>
                           <span>•</span>
                           {/* <span>Vol {publication.volume}, Issue {publication.issue}</span> */}
+                          <span>Vol 1, Issue 1</span>
                         </SmallMeta>
                       </div>
                     </CardHeader>

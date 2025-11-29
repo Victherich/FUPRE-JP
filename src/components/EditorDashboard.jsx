@@ -14,6 +14,7 @@ import AllReviewers from "./AllReviewers";
 import SearchComponent from "./SearchComponent";
 import PublishArticle from "./PublishArticle";
 import PublishedArticles from "./PublishedArticles";
+import ManageConferences from "./ManageConferences";
 
 
 const DashboardContainer = styled.div`
@@ -182,13 +183,15 @@ const EditorDashboard = () => {
       </Sidebar>
 
       <ContentContainer open={menuOpen}>
-        {activePage === "profile" && <EditorProfile/>}
+        {activePage === "profile" && <EditorProfile  setActivePage={setActivePage} />}
         {activePage === "submission" && <AllSubmittedManuscripts/>}
         {activePage === "register" && <EditorSignUp/>}
         {activePage === "allreviewers" && <AllReviewers/>}
         {activePage === "searchmanuscripts" && <SearchComponent setActivePage={setActivePage}/>}
         {activePage === "publisharticle" && <PublishArticle setActivePage={setActivePage}/>}
         {activePage === "publishedarticles" && <PublishedArticles/>}
+        {activePage === "manageconference" && <ManageConferences  setActivePage={setActivePage}/>}
+
       </ContentContainer>
     </DashboardContainer>
   );

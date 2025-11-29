@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from "./Features/Store";
 import ContextProvider from './components/Context';
+import { HelmetProvider } from "react-helmet-async";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +15,10 @@ root.render(
   <Provider store={store}>
    <PersistGate loading={null} persistor={persistor}>
 <ContextProvider>
-<App />
+  <HelmetProvider>
+      <App />
+  </HelmetProvider>
+
 </ContextProvider>
  
 

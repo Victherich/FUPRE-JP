@@ -97,6 +97,14 @@ const IssueItem = styled.li`
   }
 `;
 
+const Div = styled.div`
+font-style:italic;
+ &:hover {
+    text-decoration:underline
+  }
+
+`
+
 const Sidebar = () => {
   const [expandedYear, setExpandedYear] = useState(null);
   const {categories, mobileMenuOpen, setMobileMenuOpen}=useContext(Context);
@@ -264,12 +272,13 @@ const Sidebar = () => {
 
 
 {publications.map((pub) => (
-  <div key={pub.id} className="journal-entry" style={{marginBottom:"10px", cursor:"pointer"}} onClick={()=>navigate(`/publicationdetail/${pub.id}`)}>
+  <Div key={pub.id} className="journal-entry" style={{marginBottom:"10px", cursor:"pointer"}} onClick={()=>navigate(`/publicationdetail/${pub.id}`)}>
     <h3 style={{fontSize:"0.9rem"}}>{pub.title.slice(0,40)}...</h3>
     {/* <p  style={{fontSize:"0.9rem"}} >Volume {pub.volume}, Issue {pub.issue}</p> */}
+    <p  style={{fontSize:"0.9rem"}} >Volume 1, Issue 1</p>
     {/* <p>Published: {new Date(pub.created_at).toLocaleDateString()}</p> */}
     {/* <a href={`https://www.fuprecosjournals.org/${pub.file_path}`} target="_blank" rel="noreferrer">Download PDF</a> */}
-  </div>
+  </Div>
 ))}
 
     </SidebarContainer>

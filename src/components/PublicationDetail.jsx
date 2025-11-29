@@ -334,6 +334,8 @@ import { motion } from 'framer-motion';
 import { FaUser, FaCalendar, FaLink, FaFilePdf } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import { Context } from './Context';
+import { Helmet } from "react-helmet-async";
+
 
 const Wrapper = styled.div`
   width: 100%;
@@ -479,10 +481,73 @@ const PublicationDetail = () => {
     }
   };
 
+
+
+// Build full PDF URL
+const pdfUrl = publication?.file_path 
+  ? `https://www.fuprecosjournals.org/api/${publication.file_path}`
+  : "";
+
+
+
+
+
   if (error) return <Wrapper>{error}</Wrapper>;
   if (!publication) return <Wrapper>Loading...</Wrapper>;
 
   return (
+    <>
+  
+    <Helmet>
+  <title>{publication.title}</title>
+
+  {/* Google Scholar Required Metadata */}
+  <meta name="citation_title" content={publication.title} />
+  <meta name="citation_author" content={authorName} />
+  <meta name="citation_publication_date" content={publication.created_at?.split(" ")[0]} />
+  <meta name="citation_journal_title" content="FUPRE Journal of Petroscience" />
+  <meta name="citation_pdf_url" content={pdfUrl} />
+  <meta name="citation_keywords" content={publication.keywords} />
+
+  {/* Optional but recommended */}
+  {publication.co_authors && publication.co_authors
+    .split(",")
+    .map((co) => (
+      <meta name="citation_author" content={co.trim()} />
+    ))}
+
+  <meta name="citation_abstract" content={publication.abstract} />
+  <meta name="citation_language" content="en" />
+</Helmet>
+
+
+<Helmet>
+  <script type="application/ld+json">
+    {`
+      {
+        "@context": "https://schema.org",
+        "@type": "ScholarlyArticle",
+        "headline": "${publication.title}",
+        "author": "${authorName}",
+        "datePublished": "${publication.created_at}",
+        "description": "${publication.abstract}",
+        "keywords": "${publication.keywords}",
+        "url": "https://www.fuprecosjournals.org/publicationdetail/${publication.id}",
+        "publisher": {
+          "@type": "Organization",
+          "name": "FUPRE Journal of Petroscience"
+        },
+        "encoding": {
+          "@type": "MediaObject",
+          "contentUrl": "https://www.fuprecosjournals.org/api/${publication.file_path}",
+          "encodingFormat": "application/pdf"
+        }
+      }
+    `}
+  </script>
+</Helmet>
+
+
     <Wrapper>
       <Card initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
         <Title>{publication.title.toUpperCase()}</Title>
@@ -527,11 +592,22 @@ const PublicationDetail = () => {
           <Button color="#3c74ff" onClick={() => window.open(publication.doiLink, '_blank')}>
             <FaLink /> DOI Link
           </Button>
+
+          <Button 
+  color="#28a745" 
+  href={`https://www.fuprecosjournals.org/api/publicationdetail.php?id=${publication.id}`} 
+  target="_blank"
+>
+  <FaLink /> Google Scholar Version
+</Button>
+
         </ButtonRow>
 
         <BackButton onClick={() => window.history.back()}>Back</BackButton>
       </Card>
     </Wrapper>
+
+      </>
   );
 };
 

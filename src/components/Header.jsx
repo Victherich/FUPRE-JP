@@ -214,7 +214,7 @@ import React, { useRef, useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
-import logo from "../Images/logo.jpg";
+import logo from "../Images/logo.png";
 import Sidebar from "./SideBar";
 import { Context } from "./Context";
 
@@ -228,7 +228,7 @@ const HeaderContainer = styled.header`
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 1000;
+  z-index: 400;
 `;
 
 const LogoWrap = styled.div`
@@ -439,6 +439,10 @@ const Header = () => {
         <NavLink onClick={() => { navigate("/publishingpolicy"); setMobileMenuOpen(false); }} active={window.location.pathname === "/publishingpolicy"}>
           Publishing Policy
         </NavLink>
+ <NavLink onClick={() => { navigate("/conferences"); setMobileMenuOpen(false); }} active={window.location.pathname === "/conferences"}>
+          Conferences
+        </NavLink>
+
         <NavLink onClick={() => { navigate("/contactus"); setMobileMenuOpen(false); }} active={window.location.pathname === "/contactus"}>
           Contact Us
         </NavLink>

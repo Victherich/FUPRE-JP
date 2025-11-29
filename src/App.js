@@ -1,4 +1,4 @@
-import logo from './Images/logo.jpg';
+import logo from './Images/logo2.jpeg';
 import './App.css';
 import LandingPage from './components/LandingPage';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
@@ -45,6 +45,7 @@ import ReviewerSignUp from './components/ReviewerSignup';
 import PublicationDetail from './components/PublicationDetail';
 import Fireflies from './components/RainEffects';
 import ForewordPage from './components/ForewardPage';
+import ConferencePage from './components/ConferencePage';
 
 
 
@@ -66,6 +67,7 @@ function App() {
       <Route path='/publishingpolicy' element={<PublishingPolicies/>}/>
       <Route path='/publicationdetail/:id' element={<PublicationDetail/>}/>
       <Route path='/foreward' element={<ForewordPage/>}/>
+      <Route path='/conferences' element={<ConferencePage/>}/>
   
 
 {/* author pages */}
@@ -94,7 +96,7 @@ function App() {
       </Route>
 
       <Route path='/editorsignup' element={<PrivateEditorSignup/>}>
-        {/* <Route path='' element={<EditorSignUp/>}/> */}
+        <Route path='' element={<EditorSignUp/>}/>
       </Route>
 
       <Route path='/editorlogin' element={<PrivateEditorLogin/>}>

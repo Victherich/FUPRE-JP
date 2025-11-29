@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FaArrowUp, FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import logo from '../Images/logo.png'
+import logo3 from '../Images/logo3.jpeg'
 
 const FooterContainer = styled.footer`
   background: rgba(0, 0, 50, 0.5);
@@ -127,9 +129,12 @@ export default function Footer() {
       <FooterGrid>
         {/* About Section */}
         <FooterSection>
-          <h2>Journal of Petroscience</h2>
+          <h2>FUPRE Journal of Petroscience</h2>
           <p>A peer-reviewed platform committed to advancing research in reservoir studies, drilling innovation, geoscience, and sustainable energy exploration.</p>
         </FooterSection>
+
+   
+
 
         {/* Quick Links */}
         <FooterSection>
@@ -157,8 +162,8 @@ export default function Footer() {
           <h2>Contact</h2>
           <p>College of Science, Federal University of Petroleum Resources Effurun,</p>
           <p>Delta State, Nigeria</p>
-          <p>📧 journal@fupre.edu.ng</p>
-          <p>📞 +234 (0) 123 456 7890</p>
+          <p>📧 cosjournals@fupre.edu.ng</p>
+          <p>📞 +234 (0) 907 042 2286</p>
           <SocialIcons>
             <a href="#"><FaFacebook /></a>
             <a href="#"><FaTwitter /></a>
@@ -173,10 +178,16 @@ export default function Footer() {
           <NewsletterInput type="email" placeholder="Enter your email" required />
           <SubscribeButton>Subscribe</SubscribeButton>
         </FooterSection>
+
+     <FooterSection>
+          <img src={logo} alt='logo' style={{width:"100px", borderRadius:"20px"}}/>
+          <img src={logo3} alt='logo3' style={{width:"300px", borderRadius:"20px", marginTop:"20px"}}/>
+        </FooterSection>
+
       </FooterGrid>
 
       <FooterInfo>
-        © {new Date().getFullYear()} Journal of Petroscience. All rights reserved.
+        © {new Date().getFullYear()}FUPRE Journal of Petroscience Materials. All rights reserved.
         <br />
         <a style={{ textDecoration: "underline", cursor: "pointer" }} onClick={() => navigate("/publishingpolicy")}>
           Publishing Policy
