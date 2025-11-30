@@ -46,6 +46,7 @@ import PublicationDetail from './components/PublicationDetail';
 import Fireflies from './components/RainEffects';
 import ForewordPage from './components/ForewardPage';
 import ConferencePage from './components/ConferencePage';
+import logo3 from './Images/logo3.jpeg'
 
 
 
@@ -132,6 +133,8 @@ function App() {
 
     </Routes>
     <a><img src={logo} alt="logo" className="WhatsAppIcon"/></a> 
+
+     {/* <a><img src={logo3} alt="logo" className="WhatsAppIcon2"/></a>  */}
   
     <Footer/>
    </BrowserRouter>

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import heroVideo from "../Images/media1.mp4";
+import logo3 from '../Images/logo3.jpeg'
 
 // Styled Components
 const HeroContainer = styled.section`
@@ -126,6 +127,11 @@ const HeroSubtitle = styled.p`
   }
 `;
 
+const HeroImg  = styled.img`
+width:250px;
+border-radius:20px;
+`
+
 // Hero Component
 const Hero = () => {
   const heroRef = useRef(null);
@@ -161,8 +167,9 @@ const Hero = () => {
       <HeroText>
         <HeroTitle isVisible={isVisible}>FUPRE JP</HeroTitle>
         <HeroTitle2 isVisible={isVisible}>
-          FUPRE JOURNAL OF PETROSCIENCE MATERIALS
+          FUPRE JOURNAL OF PETROSCIENCE
         </HeroTitle2>
+        <HeroImg src={logo3} alt='logo3'/>
         {/* <HeroSubtitle isVisible={isVisible}>Advancing knowledge and innovation globally</HeroSubtitle> */}
       </HeroText>
     </HeroContainer>

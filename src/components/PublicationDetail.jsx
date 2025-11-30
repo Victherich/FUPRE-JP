@@ -331,7 +331,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { FaUser, FaCalendar, FaLink, FaFilePdf } from 'react-icons/fa';
+import { FaUser, FaCalendar, FaLink, FaFilePdf, FaShareAlt } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 import { Context } from './Context';
 import { Helmet } from "react-helmet-async";
@@ -359,10 +359,10 @@ const Card = styled(motion.div)`
 `;
 
 const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: #1b2a4a;
   margin: 0;
-  line-height: 1.3;
+  // line-height: 1.3;
 `;
 
 const Meta = styled.p`
@@ -492,6 +492,32 @@ const pdfUrl = publication?.file_path
 
 
 
+const handleShare = async () => {
+  const shareData = {
+    title: publication.title,
+    text: publication.abstract?.slice(0, 150) + "...",
+    url: window.location.href,
+  };
+
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+      console.log("Shared successfully");
+    } catch (err) {
+      console.log("Share cancelled:", err);
+    }
+  } else {
+    // Fallback: copy link to clipboard
+    navigator.clipboard.writeText(shareData.url);
+    alert("Link copied to clipboard!");
+  }
+};
+
+
+
+
+
+
   if (error) return <Wrapper>{error}</Wrapper>;
   if (!publication) return <Wrapper>Loading...</Wrapper>;
 
@@ -593,13 +619,18 @@ const pdfUrl = publication?.file_path
             <FaLink /> DOI Link
           </Button>
 
-          <Button 
+          {/* <Button 
   color="#28a745" 
   href={`https://www.fuprecosjournals.org/api/publicationdetail.php?id=${publication.id}`} 
   target="_blank"
 >
   <FaLink /> Google Scholar Version
+</Button> */}
+
+<Button color="#17a2b8" onClick={handleShare}>
+  <FaShareAlt /> Share
 </Button>
+
 
         </ButtonRow>
 

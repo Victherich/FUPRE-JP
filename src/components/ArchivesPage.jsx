@@ -359,7 +359,7 @@
 
 import React, { useState, useEffect, useContext } from "react";
 import styled, { keyframes } from "styled-components";
-import { FaSearch, FaNewspaper } from "react-icons/fa";
+import { FaSearch, FaNewspaper,FaShareAlt } from "react-icons/fa";
 import Hero4 from "./Hero4";
 import Sidebar from "./SideBar";
 import Swal from "sweetalert2";
@@ -369,21 +369,56 @@ import { Context } from "./Context";
 import logo from '../Images/logo.jpeg';
 
 // ---------- Typing animation ----------
+// const TypingContainer = styled.h2`
+//   font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+//   font-weight: 600;
+//   letter-spacing: 0.2px;
+//   font-size: 1.35rem;
+//   color: rgba(8, 12, 32, 0.85);
+//   white-space: normal;      /* allow wrapping */
+//   overflow-wrap: break-word; /* break long words */
+//   word-break: break-word;    /* handle edge cases */
+//   border-right: 3px solid rgba(8,12,32,0.2);
+//   width: 100%;              /* full width so it can wrap */
+//   max-width: 900px;         /* optional: limit max width */
+//   margin: 0 auto 26px;
+//   animation: blinkCursor 0.8s steps(2, start) infinite;
+
+//   @keyframes blinkCursor { 50% { border-color: transparent; } }
+// `;
+
+
 const TypingContainer = styled.h2`
-  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  font-weight: 600;
-  letter-spacing: 0.2px;
-  font-size: 1.35rem;
-  color: rgba(8, 12, 32, 0.85);
-  white-space: nowrap;
+  font-size: 1.5rem;
+  font-weight: bold;
+  max-width: 900px;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  text-align:center;
+  padding:5px;
+
+  /* Allow wrapping ALWAYS */
+  white-space: normal;
+
+  /* Typing cursor effect */
   overflow: hidden;
-  border-right: 3px solid rgba(8,12,32,0.2);
+  border-right: 3px solid white;
   width: fit-content;
-  margin: 0 auto 26px;
   animation: blinkCursor 0.8s steps(2, start) infinite;
 
-  @keyframes blinkCursor { 50% { border-color: transparent; } }
+  @keyframes blinkCursor {
+    50% {
+      border-color: transparent;
+    }
+  }
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    border-right: none;
+  }
 `;
+
+
 
 // ---------- Animations ----------
 const fadeIn = keyframes`
@@ -396,7 +431,7 @@ const PageWrap = styled.div`
   font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   min-height: 100vh;
   background: linear-gradient(180deg, #e9f1ff 0%, #f7fbff 60%, #ffffff 100%);
-  padding: 36px 20px 120px;
+  // padding: 36px 20px 120px;
   color: rgba(8,12,32,0.85);
 `;
 
@@ -428,6 +463,7 @@ const MainCol = styled.main`
 /* Floating glass search */
 const SearchWrapper = styled.form`
   display:flex;
+  // flex-direction:column;
   align-items:center;
   gap:12px;
   margin: 12px 0 22px;
@@ -478,7 +514,7 @@ const SearchButton = styled.button`
 const ArchiveSection = styled.section`
   margin-top: 18px;
   animation: ${fadeIn} 1s ease both;
-  padding: 0 6px;
+  // padding: 0 6px;
 `;
 
 /* Title strip */
@@ -494,16 +530,17 @@ const SectionTitle = styled.h3`
 /* Grid of cards */
 const ArchiveGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 22px;
   margin-top: 18px;
+  padding:5px;
 `;
 
 /* Glass card */
 const ArchiveCard = styled.article`
   background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(245,250,255,0.45));
   border-radius: 16px;
-  padding: 18px;
+  padding: 10px;
   border: 1px solid rgba(255,255,255,0.6);
   backdrop-filter: blur(10px) saturate(120%);
   box-shadow: 0 10px 30px rgba(10,20,40,0.06);
@@ -606,7 +643,7 @@ const ClearSearch = styled.p`
 /* ---------- Component ---------- */
 const ArchivesPage = () => {
   const [typedText, setTypedText] = useState("");
-  const fullText = "Browse past and current issues of our world-class journal across all categories.";
+  const fullText = "Browse past and current issues of our world class journal across all categories.";
   const [publications, setPublications] = useState([]);
   const [titleShow, setTitleShow] = useState(false);
   const { articleCategory } = useParams();
@@ -717,6 +754,32 @@ const ArchivesPage = () => {
     window.scroll(0,0)
   },[])
 
+
+
+
+  const handleShare = async (publication) => {
+  const shareData = {
+    title: publication.title,
+    text: publication.abstract?.slice(0, 150) + "...",
+    url: `${window.location.origin}/publicationdetail/${publication.id}`,
+  };
+
+  // If browser supports native share
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+      console.log("Shared successfully");
+    } catch (err) {
+      console.log("Share cancelled:", err);
+    }
+  } else {
+    // Fallback for desktop
+    navigator.clipboard.writeText(shareData.url);
+    alert("Link copied to clipboard!");
+  }
+};
+
+
   return (
     <>
       <Hero4 />
@@ -735,7 +798,8 @@ const ArchivesPage = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Search articles by title — e.g. 'Reservoir' "
               />
-              <SearchButton type="submit"><FaSearch /> Search</SearchButton>
+              <br/>
+              <SearchButton type="submit"><FaSearch /></SearchButton>
             </SearchWrapper>
 
             <ArchiveSection>
@@ -772,11 +836,15 @@ const ArchivesPage = () => {
                       {publication.abstract ? (publication.abstract.length > 180 ? publication.abstract.slice(0, 180) + "…" : publication.abstract) : "No abstract available."}
                     </CardText>
 
-                    <CardActions>
-                      <CardButton onClick={() => navigate(`/publicationdetail/${publication.id}`)}>
-                        <FaNewspaper /> View Publication
-                      </CardButton>
-                    </CardActions>
+                   <CardActions>
+  <CardButton onClick={() => navigate(`/publicationdetail/${publication.id}`)}>
+    <FaNewspaper /> View Publication
+  </CardButton>
+
+  <CardButton onClick={() => handleShare(publication)}>
+    <FaShareAlt /> Share
+  </CardButton>
+</CardActions>
                   </ArchiveCard>
                 ))}
               </ArchiveGrid>

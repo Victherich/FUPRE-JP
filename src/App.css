@@ -52,13 +52,28 @@
 .WhatsAppIcon {
   position: fixed;
   z-index: 99;
-  bottom: 5%;
-  left: 2%;
+  bottom: 1%;
+  left: 1%;
   width: 70px;
   box-shadow: 0px 4px 5px;
   border-radius: 50%;
   cursor: pointer;
   animation: horizontalSpin 5s linear infinite;
+  transform-style: preserve-3d; /* Ensures 3D effect */
+}
+
+
+
+.WhatsAppIcon2 {
+  position: fixed;
+  z-index: 99;
+  bottom: 1%;
+  left: 1%;
+  width: 200px;
+  box-shadow: 0px 4px 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  /* animation: horizontalSpin 5s linear infinite; */
   transform-style: preserve-3d; /* Ensures 3D effect */
 }
 

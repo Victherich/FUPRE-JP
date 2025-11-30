@@ -149,7 +149,7 @@ export default function Footer() {
         {/* Indexing Info */}
         <FooterSection>
           <h2>Journal Information</h2>
-          <p>ISSN (Print): 1234-5678</p>
+          <p>ISSN (Print): 1595-5028</p>
           <p>ISSN (Online): xxxx-xxxx</p>
           <p>Indexed in:</p>
           <p>• Google Scholar</p>
@@ -187,7 +187,7 @@ export default function Footer() {
       </FooterGrid>
 
       <FooterInfo>
-        © {new Date().getFullYear()}FUPRE Journal of Petroscience Materials. All rights reserved.
+        © {new Date().getFullYear()} FUPRE JP. All rights reserved.
         <br />
         <a style={{ textDecoration: "underline", cursor: "pointer" }} onClick={() => navigate("/publishingpolicy")}>
           Publishing Policy
@@ -197,7 +197,7 @@ export default function Footer() {
       <FooterInfo>
      
         <a style={{ textDecoration: "underline", cursor: "pointer" }} onClick={() =>window.open('https://elexdontech.com/', '_blank')}>
-          POWERED BY ELEXDON TECHNOLOGIES LIMITED
+          POWERED BY ELEXDON  DIGITAL TECHNOLOGIES LIMITED
         </a>
       </FooterInfo>
 
