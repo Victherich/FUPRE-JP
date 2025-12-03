@@ -2,6 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import ImportanceNotice from "./ImportanceNotice";
 
 // -------- Styled Components --------
 
@@ -135,6 +136,7 @@ export default function PublishingPolicies() {
           who tries to breach or violate the policies and guidelines of the journal will be
           sanctioned.
         </Paragraph>
+        <ImportanceNotice/>
       </ContentBox>
     </PageWrapper>
   );

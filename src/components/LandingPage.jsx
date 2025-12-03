@@ -17,6 +17,7 @@ import PublishingPolicyIntro from './PublishingPolicyIntroComponent'
 import Gallery from './Gallery'
 import p12 from '../Images/p12.jpg'
 import Scope from './Scope'
+import ImportanceNotice from './ImportanceNotice'
 
 
 
@@ -74,6 +75,7 @@ const Div3 = styled.div`
 <Gallery/>
 
 <PublishingPolicyIntro/>
+<ImportanceNotice/>
     </div>
    
   )

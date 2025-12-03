@@ -69,6 +69,7 @@ function App() {
       <Route path='/publicationdetail/:id' element={<PublicationDetail/>}/>
       <Route path='/foreward' element={<ForewordPage/>}/>
       <Route path='/conferences' element={<ConferencePage/>}/>
+      
   
 
 {/* author pages */}
