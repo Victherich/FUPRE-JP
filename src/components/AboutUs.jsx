@@ -465,7 +465,7 @@ const AboutUs = () => {
         <SubSectionTitle>MANAGING EDITOR</SubSectionTitle>
         <TeamList>
           <TeamMember>
-            <MemberName>DR ELIAS EMEKA ELEMIKE</MemberName>
+            <MemberName>PROF ELIAS EMEKA ELEMIKE</MemberName>
             <MemberDetails>DEPARTMENT OF CHEMISTRY, FEDERAL UNIVERSITY OF PETROLEUM RESOURCES EFFURUN, NIGERIA</MemberDetails>
             <MemberDetails>Contact: <EmailLink href="mailto:elemike.elias@fupre.edu.ng">elemike.elias@fupre.edu.ng</EmailLink></MemberDetails>
           </TeamMember>

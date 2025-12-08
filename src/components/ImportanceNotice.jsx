@@ -76,7 +76,7 @@ const ImportanceNotice = () => {
   return (
     <Wrapper>
       <Container>
-        <Title>Importance Notice</Title>
+        <Title>Important Notice</Title>
 
         <Section>
           <Text>
